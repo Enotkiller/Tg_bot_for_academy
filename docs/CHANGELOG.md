@@ -1,4 +1,4 @@
-# Version 1.0
+# [Version 1.0](https://github.com/Enotkiller/Tg_bot_for_academy/tree/Version-1.0)
 
 ____
 
