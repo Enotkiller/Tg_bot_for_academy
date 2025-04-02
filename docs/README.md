@@ -1,4 +1,4 @@
-# Всем ку
+# Version 1.0
 
 Данный проект делал вместе с [другом](https://github.com/recurtis).
 
