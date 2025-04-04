@@ -1,9 +1,9 @@
 import datetime
 import calendar
-import DataBase
+from .DataBase import base
 from zoneinfo import ZoneInfo
 
-class system(DataBase.base):
+class system(base):
     def __init__(self):
         super().__init__()
         self.cancellation = [0, 0, 0]

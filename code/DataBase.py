@@ -13,7 +13,7 @@ class base:
         self.all = []
         self.id = []
         self.username = []
-        with open("ping.txt", "r") as file:
+        with open("code/ping.txt", "r") as file:
             for i in file.read().split("\n"):
                 if i != '':
                     print(i)
@@ -33,13 +33,13 @@ class base:
         self.read_file()
         if id != None and username != None:
             if not str(id) in self.id:
-                with open("ping.txt", "a") as file:
+                with open("code/ping.txt", "a") as file:
                     if len(self.all) > 0:
                         file.write(f"\n{id} {username}")
                     else:
                         file.write(f"{id} {username}")
             else:
-                with open("ping.txt", "w"):
+                with open("code/ping.txt", "w"):
                     pass
                 mass = self.all
                 self.all = []
@@ -89,7 +89,7 @@ class base:
         :return: Рассписание которое написано в файле.
         """
 
-        with open("Schedule.txt", "r", encoding="utf-8") as file:
+        with open("code/Schedule.txt", "r", encoding="utf-8") as file:
             self.schedule = eval(file.read())
         return self.schedule
 
@@ -98,7 +98,7 @@ class base:
         Поменять расписание в Schedule.txt на то которое сейчас в self.shedule
         """
 
-        with open("Schedule.txt", "w") as file:
+        with open("code/Schedule.txt", "w") as file:
             file.write(self.schedule)
 
     def read_url(self):
@@ -107,7 +107,7 @@ class base:
         :return: Вернет словарь с ссылками на уроки.
         """
 
-        with open("Url.txt", "r", encoding="utf-8") as file:
+        with open("code/Url.txt", "r", encoding="utf-8") as file:
             self.url = eval(file.read())
             return self.url
 
@@ -116,7 +116,7 @@ class base:
         Поменять расписание в Url.txt на то которое сейчас в self.url
         """
 
-        with open("Url.txt", "w") as file:
+        with open("code/Url.txt", "w") as file:
             file.write(self.url)
 
 
