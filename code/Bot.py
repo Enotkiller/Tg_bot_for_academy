@@ -35,20 +35,17 @@ class bot_aiogram(system):
         if args == None:
             print(message.from_user.username, message.from_user.id)
             if self.get_day_weekly_now() <= 5 and self.get_time_float() <= 14.50:
-                await message.answer(
-                    f"{self.days[self.get_day_weekly_now()]}\nТекущее время: {self.get_time_str()}\n{"Текущая" if not self.get_pair_number_type(self.get_pair_number_now()) else "Будет"} пара: {self.get_pair_now()}\nСтатус: {(("Отпустили" if self.get_cancellation() == True else "Перемена" if self.get_pair_number_type(self.get_pair_number_type()) else ("Идёт")))}\nСсылка: {self.get_url_pair()}")
+                await message.answer(f"{self.days[self.get_day_weekly_now()]}\nТекущее время: {self.get_time_str()}\n{"Текущая" if not self.get_pair_number_type(self.get_pair_number_now()) else "Будет"} пара: {self.get_pair_now()}\nСтатус: {(("Отпустили" if self.get_cancellation() == True else "Перемена" if self.get_pair_number_type(self.get_pair_number_now()) else ("Идёт")))}\nСсылка: {self.get_url_pair()}")
             else:
                 await message.answer("Какие уроки челл.")
         elif args[0].lower() == "all":
             try:
-                await message.answer(
-                    f"{self.days[self.get_day_weekly_now() - 1]}\n1: {self.get_pair(1, self.get_day_weekly_now())}\n2: {self.get_pair(2, self.get_day_weekly_now())}\n3: {self.get_pair(3, self.get_day_weekly_now())}\n4: {self.get_pair(4, self.get_day_weekly_now())}")
+                await message.answer(f"{self.days[self.get_day_weekly_now() - 1]}\n1: {self.get_pair(1, self.get_day_weekly_now())}\n2: {self.get_pair(2, self.get_day_weekly_now())}\n3: {self.get_pair(3, self.get_day_weekly_now())}\n4: {self.get_pair(4, self.get_day_weekly_now())}")
             except:
                 pass
         elif args[0].lower() == "next":
             try:
-                await message.answer(
-                    f"{self.days[self.get_day_weekly_now()]}\n1: {self.get_pair(1, self.get_day_weekly_now())}\n2: {self.get_pair(2, self.get_day_weekly_now())}\n3: {self.get_pair(3, self.get_day_weekly_now())}\n4: {self.get_pair(4, self.get_day_weekly_now())}")
+                await message.answer(f"{self.days[self.get_day_weekly_now()]}\n1: {self.get_pair(1, self.get_day_weekly_now())}\n2: {self.get_pair(2, self.get_day_weekly_now())}\n3: {self.get_pair(3, self.get_day_weekly_now())}\n4: {self.get_pair(4, self.get_day_weekly_now())}")
             except:
                 pass
 
@@ -98,8 +95,7 @@ class bot_aiogram(system):
                 if len(username) > 1:
                     for i in range(1, len(username)):
                         text = f"{text} @{username[i]}"
-                await self.bot.send_message(chat_id=self.chat_id,
-                                            text=f"Пара некст - {self.get_pair_now()}.\nСсылка - {(self.get_url_pair()) if self.get_pair_now() != "Пары нет" else None}.")
+                await self.bot.send_message(chat_id=self.chat_id, text=f"Пара некст - {self.get_pair_now()}.\nСсылка - {(self.get_url_pair()) if self.get_pair_now() != "Пары нет" else None}.")
                 await self.bot.send_message(chat_id=self.chat_id, text=f"Пинг: {text}")
                 print(f"Сообщение отправлено в {datetime.now().strftime('%H:%M:%S')}")
             except Exception as e:

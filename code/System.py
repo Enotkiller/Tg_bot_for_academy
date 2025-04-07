@@ -3,6 +3,7 @@ import calendar
 from .DataBase import base
 from zoneinfo import ZoneInfo
 
+
 class system(base):
     def __init__(self):
         super().__init__()
@@ -16,10 +17,13 @@ class system(base):
         :return: В текстовом виде, какая сейчас пара за задаными параметрами.
         """
 
-        if number != 0 and day_week != 0 and day_week <= 5 and number <= 4 and number >= -4:
+        if number != 0 and day_week != 0 and day_week <= 5 and number <= 5 and number >= -5:
             if number < 0:
                 number = number * -1
-            return self.schedule[day_week][number]
+            if self.schedule[day_week][number] != None:
+                return self.schedule[day_week][number]
+            elif not number.is_integer():
+                return self.schedule[day_week][int(number - 0.5)]
         return None
 
     def get_pair_now(self):
@@ -60,25 +64,25 @@ class system(base):
         time = self.get_time_float()
         if time >= 8.0 and time <= 9.49:
             if time >= 8.0 and time <= 8.30:
-                return -1
+                return int(-1)
             else:
-                return 1
+                return int(1)
         elif time >= 9.50 and time <= 11.20:
             if time >= 9.50 and time <= 9.59:
-                return -2
+                return int(-2)
             else:
-                return 2
+                return int(2)
         elif time >= 11.20 and time <= 13.20:
             if time >= 11.20 and time <= 11.59:
-                return -3
+                return int(-3)
             else:
-                return 3
+                return int(3)
         elif time >= 13.20 and time <= 14.50:
             if time >= 13.20 and time <= 13.29:
-                return -4
+                return int(-4)
             else:
-                return 4
-        return 0
+                return int(4)
+        return int(0)
 
     def get_pair_number_now_without_type(self):
         """
@@ -127,7 +131,7 @@ class system(base):
                         break
         return now
 
-    def get_pair_number_type(self, number = 0):
+    def get_pair_number_type(self, number : int = 0):
         """
         :param number: сюда результат от функции get_pair_number_now, или самому.
         :return: Если перемена то вернет True, если нет то False.
@@ -154,7 +158,7 @@ class system(base):
         """
 
         time = self.get_time_now()
-        return f"{str(time.hour):{str(time.minute)}}"
+        return f"{ ("0" + str(time.hour)) if int(time.hour) < 10 else str(time.hour)}:{("0" + str(time.minute)) if int(time.minute) < 10 else str(time.minute)}"
 
     def get_time_float(self):
         """
@@ -170,7 +174,10 @@ class system(base):
         """
 
         pair = self.get_pair_now()
-        return self.url[pair]
+        if pair != None:
+            return self.url[pair]
+        else:
+            return None
 
     def set_cancellation_on_pair(self):
         """
